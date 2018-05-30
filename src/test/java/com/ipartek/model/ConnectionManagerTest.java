@@ -2,8 +2,6 @@ package com.ipartek.model;
 
 import static org.junit.Assert.*;
 
-import java.sql.Connection;
-
 import org.junit.Test;
 
 public class ConnectionManagerTest {

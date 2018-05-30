@@ -30,8 +30,8 @@ public class ConsultasDAO {
 		return INSTANCE;
 	}
 	
-	public Consulta crear(Usuario pojo,String consulta) {
-		Consulta resul = null;
+	public boolean crear(Usuario pojo,String consulta) {
+		boolean resul = false;
 		String sql = "INSERT INTO consultas (usuario,nombreconsulta,fecha) VALUES (?,?,CURDATE());";
 
 		try (Connection con = ConnectionManager.getConnection();
@@ -47,9 +47,10 @@ public class ConsultasDAO {
 			
 			if (affectedRows == 1) {
 			
-				try (ResultSet rs = pst.executeQuery()) {
+				try (ResultSet rs = pst.getGeneratedKeys()) {
 					while (rs.next()) {
-						resul = mapper(rs);
+						
+						resul = true;
 					}
 				}
 			}

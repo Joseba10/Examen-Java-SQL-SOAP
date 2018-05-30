@@ -1,7 +1,5 @@
 package com.ipartek.pojo;
 
-import java.util.Date;
-
 public class Consulta {
 
 //Declaracion de variables

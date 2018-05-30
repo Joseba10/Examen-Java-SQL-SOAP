@@ -27,7 +27,7 @@
 
  			<label for="codigo">Buscar codigo postal</label>
       
-        	<input type="text" class="form-control"name="codigo"  required autofocus>
+        	<input type="number" class="form-control"name="codigo"  required autofocus>
 			
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
       

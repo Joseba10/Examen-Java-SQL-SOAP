@@ -30,15 +30,15 @@ public class ConsultasDAO {
 		return INSTANCE;
 	}
 	
-	public boolean crear(Usuario pojo,String consulta) {
+	public boolean crear(int id,String consulta) {
 		boolean resul = false;
-		String sql = "INSERT INTO consultas (usuario,nombreconsulta,fecha) VALUES (?,?,CURDATE());";
+		String sql = "INSERT INTO consultas (id_usuarios,nombreconsulta,fecha) VALUES (?,?,CURDATE());";
 
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pst = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);) {
 
 		//Insercion de los datos
-			pst.setString(1, pojo.getNombre());
+			pst.setInt(1, id);
 			pst.setString(2, consulta);
 		
 
@@ -71,11 +71,12 @@ public class ConsultasDAO {
 		
 //Rellenamos el objeto usuario con los datos correspondientes	
 		u.setNombre(rs.getString("nombre_consulta"));
+		u.setId(rs.getInt("id_usuarios"));
 		
 		Usuario usuario = new Usuario();
 		usuario.setNombre(rs.getString("usuario"));
 		u.setUsuario(usuario);
-		
+	
 		return u;
 		}
 	

@@ -59,11 +59,13 @@ public class ConsultasController extends HttpServlet {
 	
 		  String codigo = request.getParameter("codigo");
 		  Usuario usuario = (Usuario) session.getAttribute("usuario");
-		  
+		 
+		  int id =usuario.getId();
 		
 		  System.out.println(codigo);
 		  
-		  boolean consulta = daoConsultas.crear(usuario, codigo);
+		  boolean consulta = daoConsultas.crear(id, codigo);
+		  System.out.println(id);
 	try {
 			
 			if (consulta ==true) {

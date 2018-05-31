@@ -70,7 +70,7 @@ public class LoginController extends HttpServlet {
 		System.out.println("Nombre " + nombre + " Contraseña " + password);
 	//Llamamos al metodo que esta ubicado en el DAO
 		Usuario usuario = daoUsuario.check(nombre, password);
-	
+	System.out.println(usuario.getId());
 	try {
 		
 		//Si no cumple los dos parametros te manda al login

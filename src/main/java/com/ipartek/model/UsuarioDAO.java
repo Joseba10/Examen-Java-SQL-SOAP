@@ -32,13 +32,14 @@ public class UsuarioDAO {
 	public Usuario check(String nombre, String pass) {
 		
 		Usuario resul = null;
-		String sql = "Select nombre as 'nombre_usuario',contrasena as 'password' from usuarios where nombre=? and contrasena=?;";
+		String sql = "Select idusuarios as 'id',nombre as 'nombre_usuario',contrasena as 'password' from usuarios where nombre=? and contrasena=?;";
 		
 		try (Connection con = ConnectionManager.getConnection(); PreparedStatement pst = con.prepareStatement(sql);) {
 			
 			//Añadimos los datos
 			pst.setString(1, nombre);
 			pst.setString(2, pass);
+			
 			
 			try (ResultSet rs = pst.executeQuery()) {
 				while (rs.next()) {
@@ -59,6 +60,7 @@ public class UsuarioDAO {
 	//Rellenamos el objeto usuario con los datos correspondientes
 		u.setNombre(rs.getString("nombre_usuario"));
 		u.setPass(rs.getString("password"));
+		u.setId(rs.getInt("id"));
 		return u;
 		}
 	

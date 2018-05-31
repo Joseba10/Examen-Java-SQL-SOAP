@@ -60,7 +60,7 @@ public class LoginController extends HttpServlet {
 
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		try {
 	//Recogida de los parametros introducidos en la pantalla de login
 		
 		String nombre = request.getParameter("usuario");
@@ -70,8 +70,8 @@ public class LoginController extends HttpServlet {
 		System.out.println("Nombre " + nombre + " Contraseña " + password);
 	//Llamamos al metodo que esta ubicado en el DAO
 		Usuario usuario = daoUsuario.check(nombre, password);
-	System.out.println(usuario.getId());
-	try {
+	System.out.println(usuario);
+	
 		
 		//Si no cumple los dos parametros te manda al login
 			if(nombre!="" && password!="") {
@@ -90,7 +90,6 @@ public class LoginController extends HttpServlet {
 				  session.setMaxInactiveInterval(SESSION_EXPIRATION);
 				  view = VIEW_BACKOFFICE;
 				} else {
-
 						view = VIEW_LOGIN;
 						alert = new Alert("Credenciales incorrectas, prueba de nuevo");
 				} //Fin del segundo if
